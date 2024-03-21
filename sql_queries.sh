@@ -14,5 +14,4 @@ query2='.headers on .mode column SELECT AVG("Salary Range From") AS average_rang
 
 # query 3
 # check how many jobs posted in each date
-query3='SELECT "Posting Date", COUNT(*) AS jobs_posted FROM job_postings GROUP BY "Posting Date" ORDER BY "Posting Date";'
-
+query3='SELECT "Posting Date", COUNT(*) AS jobs_posted FROM job_postings WHERE "Posting Date" LIKE "__/__/____" GROUP BY "Posting Date" ORDER BY SUBSTR("Posting Date", 7, 4), SUBSTR("Posting Date", 1, 2), SUBSTR("Posting Date", 4, 2);'
