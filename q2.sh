@@ -55,5 +55,8 @@ CREATE TABLE IF NOT EXISTS $TABLE_NAME (
 .import Jobs_NYC_Postings.csv $TABLE_NAME
 EOF
 
+# Post-import cleanup: Remove the header row based on an identifying feature, such as non-numeric "Job ID"
+sqlite3 "$DATABASE_NAME" "DELETE FROM $TABLE_NAME WHERE \"Job ID\" = 'Job ID';"
+
 # Success message
 echo "Database '$DATABASE_NAME' created and data imported successfully!"
