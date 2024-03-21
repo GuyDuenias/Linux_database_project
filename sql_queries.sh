@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Veriables of sql queries
+# Veriables of sql queries then passed down to the curl functions to ask the HTTP server
 
 # query 1
 # checks for each uniq value of position opened how many jobs has that number of jobs opened
