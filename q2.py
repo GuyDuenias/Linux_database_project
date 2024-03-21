@@ -8,19 +8,6 @@ app = Flask(__name__)
 def get():
   return str("Usage:") #Prints usage information following a GET
 
-@app.route('/example_endpoint', methods=['POST'])
-def example_endpoint():
-    # Get JSON data from the request
-    json_data = request.json
-    print(json_data['param1'])
-    # Check if JSON data exists
-    if json_data:
-        # Print the JSON data
-        print("Received JSON data:", json_data)
-        return 'JSON data received successfully!'
-    else:
-        return 'No JSON data received!'
-
 @app.route('/', methods=['POST'])
 def post():
   received_value = str(request.get_data(as_text=True)) #Gets the data from the POST request
@@ -28,8 +15,29 @@ def post():
   return str(answer) #Returns the data to the user
 
 def calculate_answer(received_value):
-  #write me
-  return
+
+    import sqlite3
+
+    # Connect to the SQLite database
+    conn = sqlite3.connect('jobs.db')
+    cursor = conn.cursor()
+
+    # Execute the query
+    cursor.execute(received_value)
+
+    # Fetch the results (assuming you're expecting one or more rows)
+    answer = cursor.fetchall()
+
+    #Format the results: convert each tuple to a string and join them with newline characters
+    formatted_answer = "\n".join([str(row) for row in answer])
+
+    # Append a success message on a new line
+    success_message = "\nQuery executed successfully!\n"
+
+    # Close the database connection
+    conn.close()
+
+    return formatted_answer + success_message
 
 if __name__ == "__main__":
   app.run(host='0.0.0.0')
