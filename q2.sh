@@ -21,14 +21,14 @@ sqlite3 "$DATABASE_NAME" ".mode csv" ".header on" &>/dev/null
 sqlite3 "$DATABASE_NAME" <<EOF
 CREATE TABLE IF NOT EXISTS $TABLE_NAME (
   "Job ID" INTEGER,
-  Agency TEXT,
+  "Agency" TEXT,
   "Posting Type" TEXT,
   "# Of Positions" INTEGER,
   "Business Title" TEXT,
   "Civil Service Title" TEXT,
   "Title Classification" TEXT,
   "Title Code No" INTEGER,
-  Level INTEGER,
+  "Level" INTEGER,
   "Job Category" TEXT,
   "Full-Time/Part-Time indicator" TEXT,
   "Career Level" TEXT,
@@ -46,10 +46,10 @@ CREATE TABLE IF NOT EXISTS $TABLE_NAME (
   "Work Location 1" TEXT,
   "Recruitment Contact" TEXT,
   "Residency Requirement" TEXT,
-  "Posting Date" TEXT,
-  "Post Until" TEXT,
-  "Posting Updated" TEXT,
-  "Process Date" TEXT
+  "Posting Date" DATE,
+  "Post Until" DATE,
+  "Posting Updated" DATE,
+  "Process Date" DATE
 );
 .mode csv
 .import Jobs_NYC_Postings.csv $TABLE_NAME
