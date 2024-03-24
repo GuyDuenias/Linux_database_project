@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def get():
-  return str("Usage:") #Prints usage information following a GET
+  return str("Usage: \nTo use the serever and get data from the database please execute: \ncurl 127.0.0.1:5000 -X POST -d '<input>' \nwhere the input is an SQL query to table: 'job_postings' \n") #Prints usage information following a GET
 
 @app.route('/', methods=['POST'])
 def post():
